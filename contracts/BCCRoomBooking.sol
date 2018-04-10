@@ -50,7 +50,7 @@ contract BCCRoomBooking is Owned {
         _price
     );
 
-    OfferRoomEvent(roomCounter, msg.sender, _name, _description, _size, _price)
+    OfferRoomEvent(roomCounter, msg.sender, _name, _description, _size, _price);
   }
 
   function getNumberOfRooms() view public returns(uint256)  {
