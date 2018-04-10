@@ -13,7 +13,7 @@ bcctoken.balanceOf(acct1)
 roomBooking.offerRoom("Seabook Room", "Seabook Room's Description", "Large", 99)
 roomBooking.getRoomsForBooking()
 
-roomBooking.bookRoom(1, 99, bccTokenAddr, {from: acct1})
+roomBooking.bookRoom(1, 99, {from: acct1})
 
 bcctoken.balanceOf(acct0)
 bcctoken.balanceOf(acct1)

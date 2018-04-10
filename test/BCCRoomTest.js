@@ -32,13 +32,12 @@ contract('BCCRoomBooking', function(accounts){
 
     return BCCToken.deployed().then(function(instance){
       instance.transfer(acct1, 100);
-      var bccTokenAddr = instance.address;
-      return bccTokenAddr;
-    }).then(function(bccTokenAddr){
+      return instance;
+    }).then(function(instance){
       BCCRoomBooking.deployed().then(function(instanceBCCRoomBooking) {
         var _id = 1;
         var _price = 100;
-        instanceBCCRoomBooking.bookRoom(_id, _price, bccTokenAddr, {from: acct1});
+        instanceBCCRoomBooking.bookRoom(_id, _price, {from: acct1});
         return instanceBCCRoomBooking;
       }).then(function(instanceBCCRoomBooking) {
         return instanceBCCRoomBooking.getRoomsForBooking();

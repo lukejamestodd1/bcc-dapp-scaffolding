@@ -18,6 +18,8 @@ contract BCCRoomBooking is Owned {
 
   uint256 roomCounter;
 
+  address bccTokenAddr;
+
   // Events
   event OfferRoomEvent (
     uint indexed _id,
@@ -36,6 +38,10 @@ contract BCCRoomBooking is Owned {
     string _size,
     uint256 _price
   );
+
+  function BCCRoomBooking(address _bccTokenAddr) public {
+    bccTokenAddr = _bccTokenAddr;
+  }
 
   function offerRoom(string _name, string _description, string _size, uint256 _price) onlyOwner public {
     roomCounter ++;
@@ -83,7 +89,7 @@ contract BCCRoomBooking is Owned {
     return (forBooking);
   }
 
-  function bookRoom(uint _id, uint price, address bccTokenAddr) payable public {
+  function bookRoom(uint _id, uint price) payable public {
     // we check whether there is at least one room
     require(roomCounter > 0);
 
