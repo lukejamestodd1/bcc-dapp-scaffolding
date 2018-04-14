@@ -1,5 +1,3 @@
-var bccTokenAddr = "0x38cf23c52bb4b13f051aec09580a2de845a7fa35"
-
 BCCToken.deployed().then(instance => {bcctoken = instance})
 BCCRoomBooking.deployed().then(instance => {roomBooking = instance})
 
