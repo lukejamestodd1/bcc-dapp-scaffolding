@@ -2,7 +2,7 @@ pragma solidity ^0.4.18;
 
 contract Owned {
   // State variable
-  address owner;
+  address public owner;
 
   // Modifiers
   modifier onlyOwner() {
