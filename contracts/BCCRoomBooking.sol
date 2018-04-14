@@ -75,18 +75,19 @@ contract BCCRoomBooking is Owned {
     // iterate over rooms
     for (uint i = 1; i <= roomCounter; i++) {
       // keep only the ID of rooms not booked yet
-      if (rooms[i].bookingPerson == 0x0) {
+      //if (rooms[i].bookingPerson == 0x0) {
         roomIds[numberOfRoomsForBooking] = rooms[i].id;
         numberOfRoomsForBooking++;
-      }
+      //}
     }
 
-    // copy the articleIds array into the smaller forBooking array
+    /* copy the articleIds array into the smaller forBooking array
     uint[] memory forBooking = new uint[](numberOfRoomsForBooking);
     for (uint j = 0; j < numberOfRoomsForBooking; j++) {
       forBooking[j] = roomIds[j];
     }
-    return (forBooking);
+    */
+    return (roomIds);
   }
 
   function bookRoom(uint _id, uint price) payable public {
