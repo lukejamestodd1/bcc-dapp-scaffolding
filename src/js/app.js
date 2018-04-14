@@ -2,7 +2,7 @@ App = {
   web3Provider: null,
   contracts: {},
   c_owner: "0x0",
-  account: "0x0",
+  c_account: "0x0",
   loading: false,
 
   init: function() {
@@ -50,6 +50,7 @@ App = {
         console.error(error);
       }else {
         var account = accounts[0];
+        App.c_account = account;
         App.contracts.BCCToken.deployed().then(instance => {
           var bccTokenInstance = instance;
           return bccTokenInstance.balanceOf(account);
@@ -153,7 +154,8 @@ App = {
     roomTemplate.find('.btn-booking').attr('data-id', id);
     roomTemplate.find('.btn-booking').attr('data-value', price);
 
-    if (owner == App.c_owner) {
+
+    if (App.c_account === owner && bookingPerson == "0x0000000000000000000000000000000000000000") {
       var bookingPersonAddress = bookingPerson.substring(0, 5) + "..." + bookingPerson.slice(-5);
       roomTemplate.find('.room-booked-by').text(bookingPersonAddress);
       roomTemplate.find('.btn-booking').prop("disabled",true);
@@ -164,21 +166,16 @@ App = {
         roomTemplate.find('.panel-body').removeClass("booked");
         roomTemplate.find('.btn-booking').text("Available");
       }
-
-    } else {
-      if (bookingPerson == "0x0000000000000000000000000000000000000000") {
+    } else if (App.c_account != owner && bookingPerson == "0x0000000000000000000000000000000000000000") {
         roomTemplate.find('.room-booked-by').text("n/a");
         roomTemplate.find('.btn-booking').text("Available");
         roomTemplate.find('.btn-booking').addClass("btn-success");
         roomTemplate.find('.btn-booking').prop("disabled",false);
-      } else {
+    } else {
         roomTemplate.find('.room-booked-by').text(bookingPerson.substring(0, 5) + "..." + bookingPerson.slice(-5));
         roomTemplate.find('.btn-booking').text("Booked");
         roomTemplate.find('.btn-booking').prop("disabled",true);
-
-      }
     }
-    
     roomsRow.append(roomTemplate.html());
   },
 
