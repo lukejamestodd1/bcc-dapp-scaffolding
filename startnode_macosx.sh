@@ -1,0 +1,1 @@
+geth --networkid 2048 --mine --minerthreads 1 --datadir "~/works/blockchain/bcc-dapp-privatechain/private" --nodiscover --rpc --rpcaddr "10.0.0.24" --rpcport "8545" --port "30303" --rpccorsdomain "*" --nat "any" --rpcapi eth,web3,personal,net --unlock 0 --password ~/works/blockchain/bcc-dapp-privatechain/private/password.sec --ipcpath "~/Library/Ethereum/geth.ipc"
