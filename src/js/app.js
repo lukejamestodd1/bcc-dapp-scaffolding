@@ -150,6 +150,7 @@ App = {
 
       BookRoomEvent.watch(function(error, result) {
         App.reloadRooms();
+        App.getBalances();
       });
     })
 
@@ -174,10 +175,8 @@ App = {
         roomTemplate.find('.room-booked-by').text(bookingPersonAddress);
         roomTemplate.find('.btn-booking').prop("disabled",true);
         if (bookingPerson.slice(-5).toString() != "00000") {
-          roomTemplate.find('.panel-body').addClass("booked");
           roomTemplate.find('.btn-booking').text("Booked");
         } else {
-          roomTemplate.find('.panel-body').removeClass("booked");
           roomTemplate.find('.btn-booking').text("Available");
         }
     } else {
@@ -205,7 +204,7 @@ App = {
 
     App.contracts.BCCRoomBooking.deployed().then(instance => {
       var roomBookingInstance = instance;
-      return roomBookingInstance.bookRoom(roomId, price, {from: App.c_account, gas: 3000000});
+      return roomBookingInstance.bookRoom(roomId, price, {from: App.c_account, gas: 166813});
     }).then(data => {
       console.log(data);
     }).catch(err => {
